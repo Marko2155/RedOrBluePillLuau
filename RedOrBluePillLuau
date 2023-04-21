@@ -1,0 +1,27 @@
+local bindable = Instance.new("BindableFunction")
+local StarterGui = game:GetService("StarterGui")
+ 
+function bindable.OnInvoke(response, player)
+    if response == "Red pill" then
+            StarterGui:SetCore("SendNotification", {
+        Title = "Oof!",
+        Text = "The red pill was a su1c1de pill!",
+        Duration = 5,
+    })
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+    else
+            StarterGui:SetCore("SendNotification", {
+        Title = "Yay!",
+        Text = "The blue pill was just a disguised Tic Tac!",
+        Duration = 5,
+    })
+    end
+end
+ 
+StarterGui:SetCore("SendNotification", {
+    Title = "Which one will you take?", 
+    Text = "Red pill or Blue pill?",
+    Callback = bindable,
+    Button1 = "Red pill",
+    Button2 = "Blue pill",
+})
