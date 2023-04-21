@@ -1,5 +1,19 @@
+print("Thanks for playing my little game! I hope you have atleast a little bit of fun.... -Marko2155")
+print("Setting variables...")
 local bindable = Instance.new("BindableFunction")
+local bindable2 = Instance.new("BindableFunction")
 local StarterGui = game:GetService("StarterGui")
+
+print("Setting normal functions...")
+print("Setting bindable functions...")
+function bindable2.OnInvoke(response)
+    if response == "YES" then
+        rerun()
+    end
+    if response == "NO" then
+        return
+    end
+end
  
 function bindable.OnInvoke(response, player)
     if response == "Red pill" then
@@ -9,15 +23,43 @@ function bindable.OnInvoke(response, player)
         Duration = 5,
     })
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
+        StarterGui:SetCore("SendNotification", {
+        Title = "Question",
+        Text = "Wanna play again?",
+        Callback = bindable2,
+        Button1 = "YES",
+        Button2 = "NO",
+        Duration = 5,
+    })
     else
             StarterGui:SetCore("SendNotification", {
         Title = "Yay!",
         Text = "The blue pill was just a disguised Tic Tac!",
         Duration = 5,
     })
+    StarterGui:SetCore("SendNotification", {
+        Title = "Question",
+        Text = "Wanna play again?",
+        Callback = bindable2,
+        Button1 = "YES",
+        Button2 = "NO",
+        Duration = 5,
+    })
     end
 end
- 
+
+print("Setting normal functions...")
+
+    function rerun()
+    StarterGui:SetCore("SendNotification", {
+    Title = "Which one will you take?", 
+    Text = "Red pill or Blue pill?",
+    Callback = bindable,
+    Button1 = "Red pill",
+    Button2 = "Blue pill",
+})
+end
+ print("Starting game!")
 StarterGui:SetCore("SendNotification", {
     Title = "Which one will you take?", 
     Text = "Red pill or Blue pill?",
